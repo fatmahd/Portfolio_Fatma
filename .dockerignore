@@ -1,0 +1,6 @@
+*.pdf
+!Fatma_Haddad_SOC_Analyst.pdf
+*.txt
+.git
+.gitignore
+README.md
