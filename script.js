@@ -9,6 +9,7 @@ const TRANSLATIONS = {
     navAbout: "About",
     navSkills: "Skills",
     navExperience: "Experience",
+    navProjects: "Projects",
     navCertifications: "Education",
     navContact: "Contact",
     heroGreeting: "Hello, I'm",
@@ -33,6 +34,13 @@ const TRANSLATIONS = {
     experienceEyebrow: "Work Experience",
     experienceHeadingHtml: "Defending systems<br /><span>one alert at a time</span>",
     experienceSubline: "Professional experience in SOC operations, DevSecOps, and infrastructure security.",
+    projectsEyebrow: "Featured project",
+    projectsHeadingHtml: "From security alert<br /><span>to coordinated response</span>",
+    projectsIntro: "A practical SOC lab combining detection, incident management, threat intelligence, and analyst-approved response.",
+    projectCategory: "Security Operations",
+    projectDescription:
+      "A SOC lab that turns Linux and Windows security events into actionable incidents. Wazuh detects threats, a Python integration creates cases in TheHive, Cortex and MISP enrich observables, and Shuffle orchestrates analyst-approved response workflows.",
+    projectLink: "Explore the SOC lab on GitHub",
     certificationsEyebrow: "Education",
     certificationsHeadingHtml: "Academic<br /><span>foundation</span>",
     certificationsIntro: "Academic background in computer networks, systems, and cloud computing with a focus on cybersecurity.",
@@ -81,6 +89,7 @@ const TRANSLATIONS = {
     navAbout: "À propos",
     navSkills: "Compétences",
     navExperience: "Expérience",
+    navProjects: "Projets",
     navCertifications: "Formation",
     navContact: "Contact",
     heroGreeting: "Bonjour, je suis",
@@ -105,6 +114,13 @@ const TRANSLATIONS = {
     experienceEyebrow: "Expérience professionnelle",
     experienceHeadingHtml: "Défendre les systèmes<br /><span>une alerte à la fois</span>",
     experienceSubline: "Expérience professionnelle en opérations SOC, DevSecOps et sécurité des infrastructures.",
+    projectsEyebrow: "Projet à la une",
+    projectsHeadingHtml: "De l’alerte de sécurité<br /><span>à une réponse coordonnée</span>",
+    projectsIntro: "Un lab SOC concret qui réunit détection, gestion des incidents, renseignement sur les menaces et réponse validée par l’analyste.",
+    projectCategory: "Opérations de sécurité",
+    projectDescription:
+      "Un lab SOC qui transforme les événements de sécurité Linux et Windows en incidents exploitables. Wazuh détecte les menaces, une intégration Python crée les cas dans TheHive, Cortex et MISP enrichissent les observables, et Shuffle orchestre des workflows de réponse validés par l’analyste.",
+    projectLink: "Découvrir le lab SOC sur GitHub",
     certificationsEyebrow: "Formation",
     certificationsHeadingHtml: "Base<br /><span>académique</span>",
     certificationsIntro: "Formation académique en réseaux informatiques, systèmes et cloud computing avec une spécialisation en cybersécurité.",
@@ -153,6 +169,7 @@ const TRANSLATIONS = {
     navAbout: "Chi sono",
     navSkills: "Competenze",
     navExperience: "Esperienza",
+    navProjects: "Progetti",
     navCertifications: "Formazione",
     navContact: "Contatto",
     heroGreeting: "Ciao, sono",
@@ -177,6 +194,13 @@ const TRANSLATIONS = {
     experienceEyebrow: "Esperienza professionale",
     experienceHeadingHtml: "Proteggere i sistemi<br /><span>un alert alla volta</span>",
     experienceSubline: "Esperienza professionale in operazioni SOC, DevSecOps e sicurezza delle infrastrutture.",
+    projectsEyebrow: "Progetto in evidenza",
+    projectsHeadingHtml: "Dall’allerta di sicurezza<br /><span>alla risposta coordinata</span>",
+    projectsIntro: "Un SOC lab pratico che integra rilevamento, gestione degli incidenti, threat intelligence e risposta approvata dall’analista.",
+    projectCategory: "Operazioni di sicurezza",
+    projectDescription:
+      "Un SOC lab che trasforma gli eventi di sicurezza Linux e Windows in incidenti concreti. Wazuh rileva le minacce, un’integrazione Python crea i casi in TheHive, Cortex e MISP arricchiscono gli observable e Shuffle orchestra workflow di risposta approvati dall’analista.",
+    projectLink: "Scopri il SOC lab su GitHub",
     certificationsEyebrow: "Formazione",
     certificationsHeadingHtml: "Base<br /><span>accademica</span>",
     certificationsIntro: "Background accademico in reti, sistemi e cloud computing con focus sulla cybersecurity.",
@@ -240,13 +264,14 @@ function applyTranslations() {
   }
 
   const navLinks = document.querySelectorAll(".main-nav .nav-link");
-  if (navLinks.length >= 6) {
+  if (navLinks.length >= 7) {
     navLinks[0].textContent = t("navHome");
     navLinks[1].textContent = t("navAbout");
     navLinks[2].textContent = t("navSkills");
     navLinks[3].textContent = t("navExperience");
-    navLinks[4].textContent = t("navCertifications");
-    navLinks[5].textContent = t("navContact");
+    navLinks[4].textContent = t("navProjects");
+    navLinks[5].textContent = t("navCertifications");
+    navLinks[6].textContent = t("navContact");
   }
 
   const langSelect = document.getElementById("langSelect");
@@ -292,6 +317,13 @@ function applyTranslations() {
   updateText(".experience-heading .eyebrow", t("experienceEyebrow"));
   updateHtml(".experience-heading h2", t("experienceHeadingHtml"));
   updateText(".experience-subline", t("experienceSubline"));
+
+  updateText(".projects-heading .eyebrow", t("projectsEyebrow"));
+  updateHtml(".projects-heading h2", t("projectsHeadingHtml"));
+  updateText(".projects-intro", t("projectsIntro"));
+  updateText(".soc-project-category", t("projectCategory"));
+  updateText(".soc-project-description", t("projectDescription"));
+  updateText(".soc-project-link span", t("projectLink"));
 
   updateText(".cert-heading .eyebrow", t("certificationsEyebrow"));
   updateHtml(".cert-heading h2", t("certificationsHeadingHtml"));
@@ -417,7 +449,7 @@ const cardObserver = new IntersectionObserver(
 function registerCardAnimations(scope = document) {
   const root = scope && typeof scope.querySelectorAll === "function" ? scope : document;
   const cards = root.querySelectorAll(
-    ".home-mini-grid article, .about-grid article, .about-focus-grid article, .about-skill-level-grid article, .knowledge-grid article, .experience-card, .achievement-grid article, .cert-card, .cert-academic-card, .education-grid article, .timeline article, .contact-grid a, .skill-card"
+    ".home-mini-grid article, .about-grid article, .about-focus-grid article, .about-skill-level-grid article, .knowledge-grid article, .experience-card, .achievement-grid article, .cert-card, .cert-academic-card, .education-grid article, .timeline article, .contact-grid a, .skill-card, .soc-project-card"
   );
 
   cards.forEach((card) => {
